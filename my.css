@@ -176,9 +176,9 @@ nav.level p {
 
 .scroll {
     position: absolute;
-    right: 20px;
-    bottom: 20px;
-    padding: 20px;
+    right: 5px;
+    bottom: 5px;
+    padding: 10px;
     text-align: center;
     margin: 0 0 0 0;
     cursor: pointer;

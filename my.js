@@ -11,13 +11,15 @@ $(function($) {
 
         resetUI();
 
-        $('#go svg:eq(0)').hide();
-        $('#go svg:eq(1)').show();
-        $('#inputTxt').val('');
+        analyzeCall(intxt);
 
-        $('#go svg:eq(1)').delay(1500).hide(800);
-        $('section.res').delay(1500).fadeIn(800);
-        $('#go svg:eq(0)').delay(1500).show(800);
+        // $('#go svg:eq(0)').hide();
+        // $('#go svg:eq(1)').show();
+        // $('#inputTxt').val('');
+
+        // $('#go svg:eq(1)').delay(1500).hide(800);
+        // $('section.res').delay(1500).fadeIn(800);
+        // $('#go svg:eq(0)').delay(1500).show(800);
 
         // oops();
 
@@ -39,6 +41,33 @@ $(function($) {
     });
 
 });
+
+function analyzeCall(sendTxt) {
+
+    var hostUrl = 'http://18.179.22.237/Analysis';
+    $.ajax({
+        url: hostUrl,
+        type: 'POST',
+        dataType: 'json',
+        data: { input_value: sendTxt },
+        timeout: 3000,
+        xhrFields: {
+            withCredentials: true
+        },
+    }).done(function(data) {
+        // alert("ok");
+        console.log("ajax call success.");
+        console.log("URL : " + hostUrl);
+        console.log("results : " + data);
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        // alert("error");
+        console.log("ajax call failed.");
+        console.log("jqXHR : " + jqXHR.status);
+        console.log("textStatus : " + textStatus);
+        console.log("errorThrown : " + errorThrown.message);
+        console.log("URL : " + hostUrl);
+    })
+}
 
 function oops() {
 
