@@ -75,7 +75,7 @@ a#danger {
     background: rgba(241, 70, 104, .5);
 }
 
-a#positive {
+a#primary {
     color: rgba(255, 255, 255, 1);
     font-weight: 500;
     /* background: #3273dc; */
