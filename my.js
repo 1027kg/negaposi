@@ -72,46 +72,6 @@ function analyzeCall(sendTxt) {
             var now = 0;
             var labelHTML = '';
             var scores = [];
-            for (var item in jsonObj) {
-                
-                var posAry = jsonObj[item].positive;
-                posAry = posAry.filter(function (x, i, self) { return self.indexOf(x) === i; });
-                var negAry = jsonObj[item].negative;
-                negAry = negAry.filter(function (x, i, self) { return self.indexOf(x) === i; });
-                var paramScore = jsonObj[item].score;
-                scores.push(paramScore);
-
-                makeLabelHTML(paragraphs[now], posAry, negAry, paramScore);
-                makeArticle(paragraphs[now], posAry, negAry, paramScore);
-
-                console.log(negAry);
-
-                now++;
-            }
-
-            setBarval(scores);
-
-        } catch (error) {
-            
-        }
-
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.log("ajax call failed.");
-        console.log("jqXHR : " + jqXHR.status);
-        console.log("textStatus : " + textStatus);
-        console.log("errorThrown : " + errorThrown.message);
-        console.log("URL : " + hostUrl);
-
-        var testRes = "[{'positive': [], 'negative': ['ウイルス', '感染', '警戒', '感染'], 'score': -1.0}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': ['感染', '悪化', '警戒', '感染'], 'score': -1.0}, {'positive': [], 'negative': ['感染'], 'score': -1.0}, {'positive': ['専門'], 'negative': ['感染', '悪化'], 'score': -0.3333333333333333}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': [], 'score': 0.0}]";
-
-        testRes = replaceAll(testRes, "'", '"');
-        
-        try {
-            
-            jsonObj = JSON.parse(testRes);
-            var now = 0;
-            var labelHTML = '';
-            var scores = [];
             
             for (var item in jsonObj) {
                 
@@ -133,8 +93,49 @@ function analyzeCall(sendTxt) {
             setBarval(scores);
 
         } catch (error) {
-            
+            console.log(error);
         }
+
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("ajax call failed.");
+        console.log("jqXHR : " + jqXHR.status);
+        console.log("textStatus : " + textStatus);
+        console.log("errorThrown : " + errorThrown.message);
+        console.log("URL : " + hostUrl);
+
+        // var testRes = "[{'positive': [], 'negative': ['ウイルス', '感染', '警戒', '感染'], 'score': -1.0}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': ['感染', '悪化', '警戒', '感染'], 'score': -1.0}, {'positive': [], 'negative': ['感染'], 'score': -1.0}, {'positive': ['専門'], 'negative': ['感染', '悪化'], 'score': -0.3333333333333333}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': [], 'score': 0.0}]";
+
+        // testRes = replaceAll(testRes, "'", '"');
+        
+        // try {
+            
+        //     jsonObj = JSON.parse(testRes);
+        //     var now = 0;
+        //     var labelHTML = '';
+        //     var scores = [];
+            
+        //     for (var item in jsonObj) {
+                
+        //         var posAry = jsonObj[item].positive;
+        //         posAry = posAry.filter(function (x, i, self) { return self.indexOf(x) === i; });
+        //         var negAry = jsonObj[item].negative;
+        //         negAry = negAry.filter(function (x, i, self) { return self.indexOf(x) === i; });
+        //         var paramScore = jsonObj[item].score;
+        //         scores.push(paramScore);
+
+        //         makeLabelHTML(paragraphs[now], posAry, negAry, paramScore);
+        //         makeArticle(paragraphs[now], posAry, negAry, paramScore);
+
+        //         // console.log(negAry);
+
+        //         now++;
+        //     }
+
+        //     setBarval(scores);
+
+        // } catch (error) {
+        //     console.log(error);
+        // }
 
     })
 }
