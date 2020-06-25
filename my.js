@@ -71,7 +71,7 @@ function analyzeCall(sendTxt) {
             jsonObj = JSON.parse(testRes);
             var now = 0;
             var labelHTML = '';
-            
+            var scores = [];
             for (var item in jsonObj) {
                 
                 var posAry = jsonObj[item].positive;
@@ -79,6 +79,7 @@ function analyzeCall(sendTxt) {
                 var negAry = jsonObj[item].negative;
                 negAry = negAry.filter(function (x, i, self) { return self.indexOf(x) === i; });
                 var paramScore = jsonObj[item].score;
+                scores.push(paramScore);
 
                 makeLabelHTML(paragraphs[now], posAry, negAry, paramScore);
                 makeArticle(paragraphs[now], posAry, negAry, paramScore);
@@ -87,6 +88,8 @@ function analyzeCall(sendTxt) {
 
                 now++;
             }
+
+            setBarval(scores);
 
         } catch (error) {
             
@@ -99,34 +102,39 @@ function analyzeCall(sendTxt) {
         console.log("errorThrown : " + errorThrown.message);
         console.log("URL : " + hostUrl);
 
-        // var testRes = "[{'positive': [], 'negative': ['ウイルス', '感染', '警戒', '感染'], 'score': -1.0}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': ['感染', '悪化', '警戒', '感染'], 'score': -1.0}, {'positive': [], 'negative': ['感染'], 'score': -1.0}, {'positive': ['専門'], 'negative': ['感染', '悪化'], 'score': -0.3333333333333333}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': [], 'score': 0.0}]";
-        // testRes = replaceAll(testRes, "'", '"');
+        var testRes = "[{'positive': [], 'negative': ['ウイルス', '感染', '警戒', '感染'], 'score': -1.0}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': ['感染', '悪化', '警戒', '感染'], 'score': -1.0}, {'positive': [], 'negative': ['感染'], 'score': -1.0}, {'positive': ['専門'], 'negative': ['感染', '悪化'], 'score': -0.3333333333333333}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': [], 'score': 0.0}]";
+
+        testRes = replaceAll(testRes, "'", '"');
         
-        // try {
+        try {
             
-        //     jsonObj = JSON.parse(testRes);
-        //     var now = 0;
-        //     var labelHTML = '';
+            jsonObj = JSON.parse(testRes);
+            var now = 0;
+            var labelHTML = '';
+            var scores = [];
             
-        //     for (var item in jsonObj) {
+            for (var item in jsonObj) {
                 
-        //         var posAry = jsonObj[item].positive;
-        //         posAry = posAry.filter(function (x, i, self) { return self.indexOf(x) === i; });
-        //         var negAry = jsonObj[item].negative;
-        //         negAry = negAry.filter(function (x, i, self) { return self.indexOf(x) === i; });
-        //         var paramScore = jsonObj[item].score;
+                var posAry = jsonObj[item].positive;
+                posAry = posAry.filter(function (x, i, self) { return self.indexOf(x) === i; });
+                var negAry = jsonObj[item].negative;
+                negAry = negAry.filter(function (x, i, self) { return self.indexOf(x) === i; });
+                var paramScore = jsonObj[item].score;
+                scores.push(paramScore);
 
-        //         makeLabelHTML(paragraphs[now], posAry, negAry, paramScore);
-        //         makeArticle(paragraphs[now], posAry, negAry, paramScore);
+                makeLabelHTML(paragraphs[now], posAry, negAry, paramScore);
+                makeArticle(paragraphs[now], posAry, negAry, paramScore);
 
-        //         console.log(negAry);
+                // console.log(negAry);
 
-        //         now++;
-        //     }
+                now++;
+            }
 
-        // } catch (error) {
+            setBarval(scores);
+
+        } catch (error) {
             
-        // }
+        }
 
     })
 }
@@ -220,6 +228,25 @@ function resetUI() {
 
 }
 
-function serBarVal() {
+function setBarval(scoreAry) {
+
+    var barList = [0,0,0];
+    scoreAry.forEach(function(elem, index) {
+        if(elem == 0) barList[1]+=1;
+        if(elem > 0) barList[0]+=1;
+        if(elem < 0) barList[2]+=1;
+    });
+
+    var perVal = 100 / (barList[0] + barList[1] + barList[2]);
+
+    $('.negposBar progress').each(function(index){
+        $(this).text( (barList[index] * perVal) + "%");
+        $(this).val( barList[index] * perVal);
+        // console.log(barList[index]*perVal);
+    });
+
+    $('.percentVal').each(function(index){
+        $(this).text(barList[index] * perVal);
+    });
 
 }
