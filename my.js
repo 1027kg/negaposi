@@ -46,7 +46,7 @@ $(function($) {
 
 function analyzeCall(sendTxt) {
 
-    var hostUrl = 'http://18.179.22.237/Analysis';
+    var hostUrl = 'http://18.179.22.237:6670/Analysis';
     var paragraphs = devTxt.split("。");
 
     $.ajax({
@@ -63,12 +63,10 @@ function analyzeCall(sendTxt) {
         console.log("ajax call success.");
         console.log("URL : " + hostUrl);
         console.log("results : " + data);
-
-        testRes = replaceAll(data, "'", '"');
         
         try {
             
-            jsonObj = JSON.parse(testRes);
+            jsonObj = JSON.parse(data);
             var now = 0;
             var labelHTML = '';
             var scores = [];
