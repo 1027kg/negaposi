@@ -9,21 +9,11 @@ $(function($) {
     $("#go").click(function() {
 
         var intxt = $('#inputTxt').val();
-        // if (intxt.length < 1) return false;
+        if (intxt.length < 1) return false;
 
         resetUI();
-
         analyzeCall(intxt);
-
-        // $('#go svg:eq(0)').hide();
-        // $('#go svg:eq(1)').show();
-        // $('#inputTxt').val('');
-
-        // $('#go svg:eq(1)').delay(1500).hide(800);
-        // $('section.res').delay(1500).fadeIn(800);
-        // $('#go svg:eq(0)').delay(1500).show(800);
-
-        // oops();
+        $('#inputTxt').val('');
 
     });
 
@@ -46,18 +36,19 @@ $(function($) {
 
 function analyzeCall(sendTxt) {
 
-    var hostUrl = 'http://18.179.22.237:6670/Analysis';
-    var paragraphs = devTxt.split("。");
+    var hostUrl = 'http://18.179.22.237:6670';
+    var paragraphs = sendTxt.split("。");
+
+    $('#go svg:eq(1)').delay(800).hide(800);
+    $('#go svg:eq(0)').delay(800).show(800);
 
     $.ajax({
         url: hostUrl,
         type: 'POST',
         dataType: 'json',
-        data: { input_value: sendTxt },
-        timeout: 3000,
-        xhrFields: {
-            withCredentials: true
-        },
+        contentType: 'application/json',
+        data: { ids: sendTxt},
+        timeout: 3000
     }).done(function(data) {
         
         console.log("ajax call success.");
@@ -82,16 +73,17 @@ function analyzeCall(sendTxt) {
 
                 makeLabelHTML(paragraphs[now], posAry, negAry, paramScore);
                 makeArticle(paragraphs[now], posAry, negAry, paramScore);
-
-                // console.log(negAry);
-
                 now++;
             }
 
             setBarval(scores);
 
+            $('section.res').delay(300).fadeIn(800);
+
         } catch (error) {
             console.log(error);
+            oops();
+            $('section.res').hide(800);
         }
 
     }).fail(function(jqXHR, textStatus, errorThrown) {
@@ -101,41 +93,13 @@ function analyzeCall(sendTxt) {
         console.log("errorThrown : " + errorThrown.message);
         console.log("URL : " + hostUrl);
 
-        // var testRes = "[{'positive': [], 'negative': ['ウイルス', '感染', '警戒', '感染'], 'score': -1.0}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': ['感染', '悪化', '警戒', '感染'], 'score': -1.0}, {'positive': [], 'negative': ['感染'], 'score': -1.0}, {'positive': ['専門'], 'negative': ['感染', '悪化'], 'score': -0.3333333333333333}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': [], 'score': 0.0}, {'positive': [], 'negative': [], 'score': 0.0}]";
+        oops();
+        $('section.res').hide(800);
 
-        // testRes = replaceAll(testRes, "'", '"');
-        
-        // try {
-            
-        //     jsonObj = JSON.parse(testRes);
-        //     var now = 0;
-        //     var labelHTML = '';
-        //     var scores = [];
-            
-        //     for (var item in jsonObj) {
-                
-        //         var posAry = jsonObj[item].positive;
-        //         posAry = posAry.filter(function (x, i, self) { return self.indexOf(x) === i; });
-        //         var negAry = jsonObj[item].negative;
-        //         negAry = negAry.filter(function (x, i, self) { return self.indexOf(x) === i; });
-        //         var paramScore = jsonObj[item].score;
-        //         scores.push(paramScore);
-
-        //         makeLabelHTML(paragraphs[now], posAry, negAry, paramScore);
-        //         makeArticle(paragraphs[now], posAry, negAry, paramScore);
-
-        //         // console.log(negAry);
-
-        //         now++;
-        //     }
-
-        //     setBarval(scores);
-
-        // } catch (error) {
-        //     console.log(error);
-        // }
-
+        $('#go svg:eq(1)').delay(800).hide(800);
+        $('#go svg:eq(0)').delay(800).show(800);
     })
+
 }
 
 function makeLabelHTML(honbun, listPos, listNeg, score){
@@ -191,9 +155,8 @@ function replaceAll(str, beforeStr, afterStr){
 function oops() {
 
     $('.markedTxt-inner').hide().html('');
-    $('.markedTxt-inner').append('<div class="has-image-centered"><img class="oops" src="oops.png" alt=""></div>');
+    $('.markedTxt-inner').append('<div class="has-image-centered"><img class="oops" src="./oops.png" alt=""></div>');
     $('.markedTxt-inner').delay(800).fadeIn(800);
-    $('section.res').hide();
 
 }
 
@@ -224,7 +187,7 @@ function resetUI() {
     });
 
     $('.percentVal').text('0');
-
+    $('section.res').hide();
 }
 
 function setBarval(scoreAry) {
@@ -241,11 +204,10 @@ function setBarval(scoreAry) {
     $('.negposBar progress').each(function(index){
         $(this).text( (barList[index] * perVal) + "%");
         $(this).val( barList[index] * perVal);
-        // console.log(barList[index]*perVal);
     });
 
     $('.percentVal').each(function(index){
-        $(this).text(barList[index] * perVal);
+        $(this).text( Math.floor((barList[index] * perVal)*10) / 10);
     });
 
 }
