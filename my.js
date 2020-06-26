@@ -123,7 +123,7 @@ function makeLabelHTML(honbun, listPos, listNeg, score){
 
 function makeArticle(honbun, listPos, listNeg, score){
 
-    classStyle = "is-primary";
+    classStyle = "is-link";
     calssLabel = "ポジティブ";
     if(score < 0) { classStyle = "is-danger"; calssLabel="ネガティブ"; }
     if(score < 0.1 && score > -0.1) {classStyle = "is-light"; calssLabel="ニュートラル"; }
