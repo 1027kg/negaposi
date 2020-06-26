@@ -26,6 +26,10 @@ section.res {
     background-color: orange;
 }
 
+.haserror{
+    font-size: 1.5em;
+}
+
 h2 {
     font-size: 1.25rem;
     color: #fff;
@@ -75,7 +79,7 @@ a#danger {
     background: rgba(241, 70, 104, .5);
 }
 
-a#primary {
+a#positive {
     color: rgba(255, 255, 255, 1);
     font-weight: 500;
     /* background: #3273dc; */
@@ -109,7 +113,8 @@ nav.level p {
 }
 
 .oops {
-    width: 100%;
+    /* width: 100%; */
+    width: 300px;
 }
 
 .percentVal {

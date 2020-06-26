@@ -1,20 +1,21 @@
-const sampleTxt = '※この文章はサンプルです。<br/>東京都は、新型<a id="warning" href="#anchor1">コロナウイルス</a>の感染拡大に警戒を呼びかける「東京アラート」について、１１日、感染の急増がなければ解除する方針です。 また、都は解除の判断と同時に休業要請などの緩和の段階も進めることができないか検討しています。 東京都は、感染状況の<a id="danger" href="#anchor2">悪化の兆候</a>が見られるなどとして、今月２日に「東京アラート」を初めて出して警戒を呼びかけてきましたが、都内では１０日の新たな感染の確認は１８人で、４日連続で２０人を下回りました。<br/>これにより、都が設定した感染の状況を示す３つの指標のうち２つでアラートを解除する場合の目安の数値を下回りました。<br/>都は、１１日も感染の確認が抑えられるなど状況が急激に悪化しなければ、専門家の意見も踏まえた上で<a id="positive" href="#anchor2">解除</a>する方針です。 具体的な解除の日時は１２日午前０時とする案などが検討されているということです。 また、都は、アラートの解除の判断と同時に休業要請などの緩和の段階を今の「ステップ２」から「ステップ３」に進めることができないかも検討しています。 「ステップ３」では、居酒屋などの飲食店の営業も翌日の午前０時まで可能になるほか、カラオケ店なども営業できるようになります。';
+const sampleTxt = '※この文章はサンプルです。<br/>東京都は、新型コロナ<a id="danger" href="#anchor1">ウイルス</a>の<a id="danger" href="#anchor1">感染</a>拡大に<a id="danger" href="#anchor1">警戒</a>を呼びかける「東京アラート」について、１１日、<a id="danger" href="#anchor1">感染</a>の急増がなければ解除する方針です<br> また、都は解除の判断と同時に休業要請などの緩和の段階も進めることができないか検討しています<br> 東京都は、<a id="danger" href="#anchor3">感染</a>状況の<a id="danger" href="#anchor3">悪化</a>の兆候が見られるなどとして、今月２日に「東京アラート」を初めて出して<a id="danger" href="#anchor3">警戒</a>を呼びかけてきましたが、都内では１０日の新たな<a id="danger" href="#anchor3">感染</a>の確認は１８人で、４日連続で２０人を下回りました<br>これにより、都が設定した<a id="danger" href="#anchor4">感染</a>の状況を示す３つの指標のうち２つでアラートを解除する場合の目安の数値を下回りました<br>都は、１１日も<a id="danger" href="#anchor5">感染</a>の確認が抑えられるなど状況が急激に<a id="danger" href="#anchor5">悪化</a>しなければ、<a id="positive" href="#anchor5">専門</a>家の意見も踏まえた上で解除する方針です<br> 具体的な解除の日時は１２日午前０時とする案などが検討されているということです<br> また、都は、アラートの解除の判断と同時に休業要請などの緩和の段階を今の「ステップ２」から「ステップ３」に進めることができないかも検討しています<br> 「ステップ３」では、居酒屋などの飲食店の営業も翌日の午前０時まで可能になるほか、カラオケ店なども営業できるようになります';
 
-const sampleCard = '<article class="message is-warning"> <div class = "message-header" ><p id = "anchor1" > コロナウイルス </p> </div> <div class = "message-body" >"top_class": "negative",<br/> "classes": [ <br/> 　　{ "class_name": "positive", "confidence": 0.09130 }, <br/> 　　{ "class_name": "negative", "confidence": 0.90869 } <br/> ] </div> </article><article class = "message is-danger" ><div class = "message-header" ><p id = "anchor2" > 悪化の兆候 </p> </div> <div class = "message-body" >"top_class": "negative", <br/> "classes": [ <br/> 　　{ "class_name": "positive", "confidence": 0.09130 }, <br/> 　　{ "class_name": "negative", "confidence": 0.90869 } <br/> ] </div> </article><article class = "message is-link is-light" ><div class = "message-header" ><p id = "anchor2" > 解除 </p> </div> <div class = "message-body" >"top_class": "negative", <br/> "classes": [ <br/> 　　{ "class_name": "positive", "confidence": 0.09130 }, <br/> 　　{ "class_name": "negative", "confidence": 0.90869 } <br/> ] </div> </article>';
-
-const devTxt = "東京都は新型コロナウイルスの感染拡大に警戒を呼びかける「東京アラート」について、11日、感染の急増がなければ解除する方針です。また、都は解除の判断と同時に休業要請などの緩和の段階も進めることができないか検討しています。東京都は、感染状況の悪化の兆候が見られるなどとして、今月2日に「東京アラート」を初めて出して警戒を呼びかけてきましたが、都内では10日の新たな感染の確認は18人で、4日連続で20人を下回りました。これにより、都が設定した感染の状況を示す3つの指標のうち2つでアラートを解除する場合の目安の数値を下回りました。都は、11日も感染の確認が抑えられるなど状況が急激に悪化しなければ、専門家の意見も踏まえたうえで解除する方針です。具体的な解除の日時は12日午前0時とする案などが検討されているということです。また都は、アラートの解除の判断と同時に休業要請などの緩和の段階を今の「ステップ2」から、「ステップ3」に進めることができないかも検討しています。「ステップ3」では、居酒屋などの飲食店の営業も翌日の午前0時まで可能になるほか、カラオケ店なども営業できるようになります。"
+const sampleCard = '<article class="message is-danger"><div class="message-header"><p id="anchor1"> ネガティブ</p></div><div class="message-body"><div class="columns is-mobile"><div class="column is-3">段落:</div><div class="column is-9">東京都は、新型コロナウイルスの感染拡大に警戒を呼びかける「東京アラート」について、１１日、感染の急増がなければ解除する方針です</div></div><div class="columns is-mobile"><div class="column is-3">スコア:</div><div class="column is-9">-1</div></div><div class="columns is-mobile"><div class="column is-3">ネガティブ:</div><div class="column is-9">ウイルス, 感染, 警戒</div></div></div></article><article class="message is-light"><div class="message-header"><p id="anchor2"> ニュートラル</p></div><div class="message-body"><div class="columns is-mobile"><div class="column is-3">段落:</div><div class="column is-9"> また、都は解除の判断と同時に休業要請などの緩和の段階も進めることができないか検討しています</div></div><div class="columns is-mobile"><div class="column is-3">スコア:</div><div class="column is-9">0</div></div></div></article><article class="message is-danger"><div class="message-header"><p id="anchor3"> ネガティブ</p></div><div class="message-body"><div class="columns is-mobile"><div class="column is-3">段落:</div><div class="column is-9"> 東京都は、感染状況の悪化の兆候が見られるなどとして、今月２日に「東京アラート」を初めて出して警戒を呼びかけてきましたが、都内では１０日の新たな感染の確認は１８人で、４日連続で２０人を下回りました</div></div><div class="columns is-mobile"><div class="column is-3">スコア:</div><div class="column is-9">-1</div></div><div class="columns is-mobile"><div class="column is-3">ネガティブ:</div><div class="column is-9">感染, 悪化, 警戒</div></div></div></article><article class="message is-danger"><div class="message-header"><p id="anchor4"> ネガティブ</p></div><div class="message-body"><div class="columns is-mobile"><div class="column is-3">段落:</div><div class="column is-9">これにより、都が設定した感染の状況を示す３つの指標のうち２つでアラートを解除する場合の目安の数値を下回りました</div></div><div class="columns is-mobile"><div class="column is-3">スコア:</div><div class="column is-9">-1</div></div><div class="columns is-mobile"><div class="column is-3">ネガティブ:</div><div class="column is-9">感染</div></div></div></article><article class="message is-danger"><div class="message-header"><p id="anchor5"> ネガティブ</p></div><div class="message-body"><div class="columns is-mobile"><div class="column is-3">段落:</div><div class="column is-9">都は、１１日も感染の確認が抑えられるなど状況が急激に悪化しなければ、専門家の意見も踏まえた上で解除する方針です</div></div><div class="columns is-mobile"><div class="column is-3">スコア:</div><div class="column is-9">-0.3333333333333333</div></div><div class="columns is-mobile"><div class="column is-3">ポジティブ:</div><div class="column is-9">専門</div></div><div class="columns is-mobile"><div class="column is-3">ネガティブ:</div><div class="column is-9">感染, 悪化</div></div></div></article><article class="message is-light"><div class="message-header"><p id="anchor6"> ニュートラル</p></div><div class="message-body"><div class="columns is-mobile"><div class="column is-3">段落:</div><div class="column is-9"> 具体的な解除の日時は１２日午前０時とする案などが検討されているということです</div></div><div class="columns is-mobile"><div class="column is-3">スコア:</div><div class="column is-9">0</div></div></div></article><article class="message is-light"><div class="message-header"><p id="anchor7"> ニュートラル</p></div><div class="message-body"><div class="columns is-mobile"><div class="column is-3">段落:</div><div class="column is-9"> また、都は、アラートの解除の判断と同時に休業要請などの緩和の段階を今の「ステップ２」から「ステップ３」に進めることができないかも検討しています</div></div><div class="columns is-mobile"><div class="column is-3">スコア:</div><div class="column is-9">0</div></div></div></article><article class="message is-light"><div class="message-header"><p id="anchor8"> ニュートラル</p></div><div class="message-body"><div class="columns is-mobile"><div class="column is-3">段落:</div><div class="column is-9"> 「ステップ３」では、居酒屋などの飲食店の営業も翌日の午前０時まで可能になるほか、カラオケ店なども営業できるようになります</div></div><div class="columns is-mobile"><div class="column is-3">スコア:</div><div class="column is-9">0</div></div></div></article>';
 
 $(function($) {
 
     $("#go").click(function() {
 
         var intxt = $('#inputTxt').val();
-        if (intxt.length < 1) return false;
+        if (intxt.length < 1) {
+            alert("テキストを入力またはペーストしてください");
+            return false;
+        }
 
         resetUI();
         analyzeCall(intxt);
         $('#inputTxt').val('');
-
+        
     });
 
     initStyle();
@@ -82,7 +83,7 @@ function analyzeCall(sendTxt) {
 
         } catch (error) {
             console.log(error);
-            oops();
+            oops(error);
             $('section.res').hide(800);
         }
 
@@ -93,7 +94,7 @@ function analyzeCall(sendTxt) {
         console.log("errorThrown : " + errorThrown.message);
         console.log("URL : " + hostUrl);
 
-        oops();
+        oops(errorThrown.message);
         $('section.res').hide(800);
 
         $('#go svg:eq(1)').delay(800).hide(800);
@@ -104,12 +105,12 @@ function analyzeCall(sendTxt) {
 
 function makeLabelHTML(honbun, listPos, listNeg, score){
 
-    dom = honbun + "。";
+    dom = honbun + "";
 
     cnt = $('.negposListView article').length;
     
     listPos.forEach(function(elem, index) {
-        dom = replaceAll(dom, elem, '<a id="primary" href="#anchor'+ (cnt+1) +'">'+elem+'</a>');
+        dom = replaceAll(dom, elem, '<a id="positive" href="#anchor'+ (cnt+1) +'">'+elem+'</a>');
     });
 
     listNeg.forEach(function(elem, index) {
@@ -124,8 +125,7 @@ function makeArticle(honbun, listPos, listNeg, score){
 
     classStyle = "is-primary";
     calssLabel = "ポジティブ";
-    if(score < -0.5) { classStyle = "is-danger"; calssLabel="ネガティブ"; }
-    if(score < 0 && score > -0.5) {classStyle = "is-warning"; calssLabel="ネガティブ"; }
+    if(score < 0) { classStyle = "is-danger"; calssLabel="ネガティブ"; }
     if(score < 0.1 && score > -0.1) {classStyle = "is-light"; calssLabel="ニュートラル"; }
 
     cnt = $('.negposListView article').length;
@@ -133,7 +133,7 @@ function makeArticle(honbun, listPos, listNeg, score){
     var wrapper = '<article class="message ' + classStyle + '">';
     wrapper += '<div class="message-header"><p id="anchor'+ (cnt+1) +'"> '+ calssLabel + '</p></div>';
     wrapper += '<div class="message-body">';
-    wrapper += '<div class="columns is-mobile"><div class="column is-3">段落:</div><div class="column is-9">'+honbun+'。</div></div>';
+    wrapper += '<div class="columns is-mobile"><div class="column is-3">段落:</div><div class="column is-9">'+honbun+'</div></div>';
     wrapper += '<div class="columns is-mobile"><div class="column is-3">スコア:</div><div class="column is-9">'+score+'</div></div>';
     if(listPos.length > 0){
         wrapper += '<div class="columns is-mobile"><div class="column is-3">ポジティブ:</div><div class="column is-9">'+listPos.join(', ')+'</div></div>';
@@ -152,10 +152,10 @@ function replaceAll(str, beforeStr, afterStr){
     return str.replace(reg, afterStr);
 }    
 
-function oops() {
+function oops(debuginfo) {
 
     $('.markedTxt-inner').hide().html('');
-    $('.markedTxt-inner').append('<div class="has-image-centered"><img class="oops" src="./oops.png" alt=""></div>');
+    $('.markedTxt-inner').append('<div class="notification is-danger is-light">内部エラーが発生しました : <br/>'+ debuginfo +'</div>');
     $('.markedTxt-inner').delay(800).fadeIn(800);
 
 }
